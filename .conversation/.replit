@@ -1,0 +1,6 @@
+modules = ["nodejs-24"]
+
+[deployment]
+deploymentTarget = "static"
+publicDir = "dist"
+build = "npm run build"

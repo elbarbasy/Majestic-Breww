@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Majestic Brew Café Website"
+description = "A warm editorial café website for Majestic Brew, featuring specialty coffee, brunch, a curated menu, gallery, location details, contact flow, and WhatsApp table reservations."
+version = "1.0.0"
+id = "artifacts/majestic-brew"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20120
+
+[services.development]
+run = "pnpm --filter @workspace/majestic-brew run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/majestic-brew", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/majestic-brew/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20120"
+BASE_PATH = "/"
